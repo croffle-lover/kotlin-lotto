@@ -19,4 +19,18 @@ class WinningNumberTest {
         assertThat(matchNumber.count()).isEqualTo(6)
         assertThat(matchBonus).isNotIn(matchNumber)
     }
+
+    @Test
+    fun `당첨 번호와 보너스 번호의 범위는 1~45까지이다`() {
+        //given
+        val winning = WinningNumber()
+        val matchNumber = winning.makeMatchNumber()
+        val matchBonus = winning.makeBonusNumber()
+
+        //when
+
+        //then
+        assertThat(matchNumber).allMatch{ it in 1..45 }
+        assertThat(matchBonus).isIn(1..45)
+    }
 }

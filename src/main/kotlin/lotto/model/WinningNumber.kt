@@ -2,12 +2,14 @@ package lotto.model
 
 class WinningNumber {
     fun makeMatchNumber(): List<Int> {
-        val matchNumber = (0..100).shuffled().chunked(6)[0]
+        val matchRange = 1..45
+        val matchNumber = matchRange.shuffled().chunked(6)[0]
         return matchNumber
     }
 
     fun makeBonusNumber(): Int {
-        val bonusNumber = (0..100).shuffled()[0]
+        val bonusRange = 1..45
+        val bonusNumber = bonusRange.shuffled()[0]
         return bonusNumber
     }
 }
