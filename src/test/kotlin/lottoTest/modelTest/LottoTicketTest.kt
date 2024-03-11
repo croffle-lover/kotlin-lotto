@@ -1,10 +1,8 @@
 package lottoTest.modelTest
 
-import io.kotest.data.forAll
 import lotto.model.LottoTicket
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.assertAll
 
 class LottoTicketTest {
     @Test
@@ -30,5 +28,17 @@ class LottoTicketTest {
 
         //then
         assertThat(lottoTicket).allMatch{ it in 1..45 }
+    }
+
+    @Test
+    fun `로또 번호는 오름차순으로 정렬하여 보여준다`() {
+        //given
+        val lotto = LottoTicket()
+        val lottoTicket = lotto.makeLottoTicket()
+
+        //when
+
+        //then
+        assertThat(lottoTicket).isSorted()
     }
 }
