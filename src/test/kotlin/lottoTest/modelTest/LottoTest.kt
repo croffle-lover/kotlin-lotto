@@ -31,4 +31,16 @@ class LottoTest {
         //then
         assertThat(error.message).isEqualTo("${wrong_money}원은 1,000원 단위가 아닙니다.")
     }
+
+    @ValueSource(ints = [-14_000, -500])
+    @ParameterizedTest
+    fun `로또 구입 금액은 양의 정수이어야 한다`(wrong_money: Int) {
+        //given
+
+        //when
+        val error: IllegalArgumentException = assertThrows { Lotto(wrong_money) }
+
+        //then
+        assertThat(error.message).isEqualTo("${wrong_money}은 양의 정수가 아닙니다.")
+    }
 }
