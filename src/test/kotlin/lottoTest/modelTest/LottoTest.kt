@@ -3,6 +3,9 @@ package lottoTest.modelTest
 import lotto.model.Lotto
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
 
 class LottoTest {
     @Test
@@ -15,5 +18,17 @@ class LottoTest {
 
         //then
         assertThat(lottoTickets.ticketNumber).isEqualTo(14)
+    }
+
+    @ValueSource(ints = [14_500, 500])
+    @ParameterizedTest
+    fun `로또 구입 금액은 거스름돈 없이 1,000원 단위로 받는다`(wrong_money: Int) {
+        //given
+
+        //when
+        val error: IllegalArgumentException = assertThrows { Lotto(wrong_money) }
+
+        //then
+        assertThat(error.message).isEqualTo("${wrong_money}원은 1,000원 단위가 아닙니다.")
     }
 }
