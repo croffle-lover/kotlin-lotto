@@ -4,6 +4,9 @@ import lotto.model.LottoTicket
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
+private val NUMBER_AMOUNT = 6
+private val NUMBER_RANGE = 1..45
+
 class LottoTicketTest {
     @Test
     fun `1개의 로또를 발행할 때 중복되지 않는 6개의 숫자를 무작위로 뽑는다`() {
@@ -15,7 +18,7 @@ class LottoTicketTest {
         lottoTicket.toSet()
 
         //then
-        assertThat(lottoTicket.count()).isEqualTo(6)
+        assertThat(lottoTicket.count()).isEqualTo(NUMBER_AMOUNT)
     }
 
     @Test
@@ -27,7 +30,7 @@ class LottoTicketTest {
         //when
 
         //then
-        assertThat(lottoTicket).allMatch{ it in 1..45 }
+        assertThat(lottoTicket).allMatch{ it in NUMBER_RANGE }
     }
 
     @Test
