@@ -28,4 +28,16 @@ class RankTest {
             { assertThat(rankElse).isEqualTo(Rank.MISS) }
         )
     }
+
+    @Test
+    fun `당첨 유형마다 몇 개의 로또가 당첨됐는지 저장한다`() {
+        //given
+        val rank = Rank.FIRST
+
+        //when
+        Rank.saveRank(rank)
+
+        //then
+        assertThat(Rank.FIRST.matchAmount).isEqualTo(1)
+    }
 }

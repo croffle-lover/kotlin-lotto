@@ -14,5 +14,9 @@ enum class Rank(val countOfMatch: Int, val winningMoney: Int, val matchBonus:Boo
                  it.countOfMatch == countOfMatch && it.matchBonus == matchBonus
             }?: MISS
         }
+
+        fun saveRank(rank: Rank) {
+            rank.matchAmount += 1
+        }
     }
 }
