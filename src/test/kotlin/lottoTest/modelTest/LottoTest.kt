@@ -10,6 +10,10 @@ import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 
+private const val SHOULD_PURCHASE_AT_LEAST_ONE_TICKET = "로또는 한 장 이상 구매해야 합니다."
+private const val IS_NOT_MONEY = "은 양의 정수가 아닙니다."
+private const val IS_NOT_1_000_UNIT = "원은 1,000원 단위가 아닙니다."
+
 class LottoTest {
     @Test
     fun `로또 구입 금액에 해당하는 로또 수량 및 로또를 발급해야 한다 로또 1장의 가격은 1,000원이다`() {
@@ -32,7 +36,7 @@ class LottoTest {
         val error: IllegalArgumentException = assertThrows { Lotto(wrong_money) }
 
         //then
-        assertThat(error.message).isEqualTo("${wrong_money}원은 1,000원 단위가 아닙니다.")
+        assertThat(error.message).isEqualTo("$wrong_money"+ IS_NOT_1_000_UNIT)
     }
 
     @ValueSource(ints = [-14_000, -500])
@@ -44,7 +48,19 @@ class LottoTest {
         val error: IllegalArgumentException = assertThrows { Lotto(wrong_money) }
 
         //then
-        assertThat(error.message).isEqualTo("${wrong_money}은 양의 정수가 아닙니다.")
+        assertThat(error.message).isEqualTo("$wrong_money"+ IS_NOT_MONEY)
+    }
+
+    @Test
+    fun `로또는 한 장 이상 구매해야 한다`() {
+        //given
+        val empty_money = 0
+
+        //when
+        val error: IllegalArgumentException = assertThrows { Lotto(empty_money) }
+
+        //then
+        assertThat(error.message).isEqualTo(SHOULD_PURCHASE_AT_LEAST_ONE_TICKET)
     }
 
     @Test
