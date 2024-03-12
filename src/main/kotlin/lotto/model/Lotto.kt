@@ -10,4 +10,11 @@ class Lotto(money: Int) {
 
         ticketNumber = money / LOTTO_TICKET_PRICE
     }
+
+    fun getRank(lottoTicketNumber: List<Int>, matchNumber: List<Int>, bonusNumber: Int): Any {
+        val countOfMatch = lottoTicketNumber.count{ matchNumber.contains(it) }
+        val matchBonus = lottoTicketNumber.contains( bonusNumber )
+
+        return Rank.valueOf(countOfMatch, matchBonus)
+    }
 }

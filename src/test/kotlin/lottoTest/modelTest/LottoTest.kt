@@ -1,6 +1,9 @@
 package lottoTest.modelTest
 
 import lotto.model.Lotto
+import lotto.model.LottoTicket
+import lotto.model.Rank
+import lotto.model.WinningNumber
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
@@ -42,5 +45,23 @@ class LottoTest {
 
         //then
         assertThat(error.message).isEqualTo("${wrong_money}은 양의 정수가 아닙니다.")
+    }
+
+    @Test
+    fun `사용자가 구매한 로또 번호와 당첨 번호, 보너스 번호를 비교하여 당첨 여부를 확인한다`() {
+        //given
+        val lottoTicket = LottoTicket()
+        val winning = WinningNumber()
+        val lotto = Lotto(1_000)
+        val lottoTicketNumber = lottoTicket.makeLottoTicket()
+        val matchNumber = winning.makeMatchNumber()
+        val bonusNumber = winning.makeBonusNumber()
+
+        //when
+        val won = lotto.getRank(lottoTicketNumber, matchNumber, bonusNumber)
+
+        //then
+        val rankValues = Rank.values()
+        assertThat(won).isIn(*rankValues)
     }
 }
