@@ -18,5 +18,9 @@ enum class Rank(val countOfMatch: Int, val winningMoney: Int, val matchBonus:Boo
         fun saveRank(rank: Rank) {
             rank.matchAmount += 1
         }
+
+        fun getWinningMoney(): Int {
+            return values().sumOf { it.winningMoney * it.matchAmount }
+        }
     }
 }

@@ -40,4 +40,16 @@ class RankTest {
         //then
         assertThat(Rank.FIRST.matchAmount).isEqualTo(1)
     }
+
+    @Test
+    fun `총 수익을 구할 수 있다`() {
+        //given
+
+        //when
+        repeat(3) { Rank.saveRank(Rank.FIFTH) }
+        Rank.saveRank(Rank.SECOND)
+
+        //then
+        assertThat(Rank.getWinningMoney()).isEqualTo(30_015_000)
+    }
 }
