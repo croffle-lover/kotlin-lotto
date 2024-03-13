@@ -7,12 +7,24 @@ private const val IS_NOT_1_000_UNIT = "원은 1,000원 단위가 아닙니다."
 
 class Lotto(money: Int) {
     val ticketNumber : Int
+    val lottoTickets : MutableList<List<Int>> = mutableListOf()
+
     init {
         require(money != 0) { SHOULD_PURCHASE_AT_LEAST_ONE_TICKET }
         require(money > 0) { "$money"+IS_NOT_MONEY }
         require(money % LOTTO_TICKET_PRICE == 0) { "$money"+ IS_NOT_1_000_UNIT}
 
         ticketNumber = money / LOTTO_TICKET_PRICE
+
+        setLottoTickets()
+    }
+
+    private fun setLottoTickets() {
+        val ticket = LottoTicket()
+        repeat(ticketNumber) {
+            val lottoTicket = ticket.makeLottoTicket()
+            lottoTickets.add(lottoTicket)
+        }
     }
 
     fun getRank(lottoTicketNumber: List<Int>, matchNumber: List<Int>, bonusNumber: Int): Any {

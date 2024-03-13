@@ -6,6 +6,7 @@ import lotto.model.Rank
 import lotto.model.WinningNumber
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertAll
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
@@ -61,6 +62,21 @@ class LottoTest {
 
         //then
         assertThat(error.message).isEqualTo(SHOULD_PURCHASE_AT_LEAST_ONE_TICKET)
+    }
+
+    @Test
+    fun `발행한 로또들의 번호를 저장한다`() {
+        //given
+        val money = 2_000
+
+        //when
+        val lotto = Lotto(money)
+
+        //then
+        assertAll(
+            { assertThat(lotto.lottoTickets[0].size).isEqualTo(6) },
+            { assertThat(lotto.lottoTickets[1].size).isEqualTo(6) }
+        )
     }
 
     @Test
