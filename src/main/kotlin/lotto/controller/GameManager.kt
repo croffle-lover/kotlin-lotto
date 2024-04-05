@@ -8,11 +8,10 @@ import lotto.view.InputView
 import lotto.view.ResultView
 
 class GameManager {
-    private val input = InputView()
     private val output = ResultView()
 
     fun startGame() {
-        val money = input.getMoney()
+        val money = InputView.getMoney()
         val lotto = getLotto(money)
         val match = getMatchNumber()
         val bonus = getBonusNumber()
