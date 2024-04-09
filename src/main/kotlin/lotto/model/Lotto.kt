@@ -4,15 +4,16 @@ private const val LOTTO_TICKET_PRICE = 1_000
 private const val SHOULD_PURCHASE_AT_LEAST_ONE_TICKET = "로또는 한 장 이상 구매해야 합니다."
 private const val IS_NOT_MONEY = "은 양의 정수가 아닙니다."
 private const val IS_NOT_1_000_UNIT = "원은 1,000원 단위가 아닙니다."
+private const val ZERO_AMOUNT = 0
 
 class Lotto(money: Int) {
     val ticketNumber : Int
     val lottoTickets : MutableList<List<Int>> = mutableListOf()
 
     init {
-        require(money != 0) { SHOULD_PURCHASE_AT_LEAST_ONE_TICKET }
-        require(money > 0) { "$money"+IS_NOT_MONEY }
-        require(money % LOTTO_TICKET_PRICE == 0) { "$money"+ IS_NOT_1_000_UNIT}
+        require(money != ZERO_AMOUNT) { SHOULD_PURCHASE_AT_LEAST_ONE_TICKET }
+        require(money > ZERO_AMOUNT) { "$money" + IS_NOT_MONEY }
+        require(money % LOTTO_TICKET_PRICE == ZERO_AMOUNT) { "$money" + IS_NOT_1_000_UNIT }
 
         ticketNumber = money / LOTTO_TICKET_PRICE
 
