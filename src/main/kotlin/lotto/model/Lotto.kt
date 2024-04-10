@@ -7,8 +7,8 @@ private const val IS_NOT_1_000_UNIT = "원은 1,000원 단위가 아닙니다."
 private const val ZERO_AMOUNT = 0
 
 class Lotto(money: Int) {
-    val ticketNumber : Int
-    val lottoTickets : MutableList<List<Int>> = mutableListOf()
+    val ticketNumber: Int
+    var lottoTicketList = mutableListOf<LottoTicket>()
 
     init {
         require(money != ZERO_AMOUNT) { SHOULD_PURCHASE_AT_LEAST_ONE_TICKET }
@@ -17,20 +17,19 @@ class Lotto(money: Int) {
 
         ticketNumber = money / LOTTO_TICKET_PRICE
 
-        setLottoTickets()
+        LottoList.setLottoTicketList(ticketNumber, lottoTicketList)
     }
 
-    private fun setLottoTickets() {
-        val ticket = LottoTicket()
-        repeat(ticketNumber) {
-            val lottoTicket = ticket.makeLottoTicket()
-            lottoTickets.add(lottoTicket)
-        }
+    fun findMatch(lottoTicket: LottoTicket, match: LottoTicket, bonus: Int): Pair<Int, Boolean> {
+        val ticket: List<Int> = lottoTicket.getNumbers()
+        val countOfMatch = ticket.count{ match.getNumbers().contains(it) }
+        val matchBonus = ticket.contains( bonus )
+
+        return Pair(countOfMatch, matchBonus)
     }
 
-    fun getRank(lottoTicketNumber: List<Int>, matchNumber: List<Int>, bonusNumber: Int): Any {
-        val countOfMatch = lottoTicketNumber.count{ matchNumber.contains(it) }
-        val matchBonus = lottoTicketNumber.contains( bonusNumber )
+    fun getRank(lottoTicketNumber: LottoTicket, matchNumber: LottoTicket, bonusNumber: Int): Any {
+        val (countOfMatch, matchBonus) = findMatch(lottoTicketNumber, matchNumber, bonusNumber)
 
         return Rank.valueOf(countOfMatch, matchBonus)
     }

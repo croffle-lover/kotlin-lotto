@@ -16,10 +16,10 @@ class WinningNumberTest {
         val matchBonus = winning.makeBonusNumber()
 
         //when
-        matchNumber.toSet()
+        matchNumber.makeLottoTicket()
 
         //then
-        assertThat(matchNumber.count()).isEqualTo(NUMBER_AMOUNT)
+        assertThat(matchNumber.getNumbers().count()).isEqualTo(NUMBER_AMOUNT)
         assertThat(matchBonus).isNotIn(matchNumber)
     }
 
@@ -33,7 +33,7 @@ class WinningNumberTest {
         //when
 
         //then
-        assertThat(matchNumber).allMatch{ it in NUMBER_RANGE }
+        assertThat(matchNumber.getNumbers()).allMatch{ it in NUMBER_RANGE }
         assertThat(matchBonus).isIn(NUMBER_RANGE)
     }
 }

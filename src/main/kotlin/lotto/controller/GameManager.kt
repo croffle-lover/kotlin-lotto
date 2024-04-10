@@ -1,9 +1,6 @@
 package lotto.controller
 
-import lotto.model.Lotto
-import lotto.model.Rank
-import lotto.model.RateOfReturn
-import lotto.model.WinningNumber
+import lotto.model.*
 import lotto.view.InputView
 import lotto.view.ResultView
 
@@ -20,11 +17,11 @@ class GameManager {
 
     private fun getLotto(money: Int): Lotto {
         val lotto = Lotto(money)
-        output.printLottoTickets(lotto.ticketNumber, lotto.lottoTickets)
+        output.printLottoTickets(lotto.ticketNumber, lotto.lottoTicketList)
         return lotto
     }
 
-    private fun getMatchNumber(): List<Int> {
+    private fun getMatchNumber(): LottoTicket {
         val winning = WinningNumber()
 
         val matchNumber = winning.makeMatchNumber()
@@ -42,16 +39,15 @@ class GameManager {
         return bonusNumber
     }
 
-    private fun getResult(lotto: Lotto, match: List<Int>, bonus: Int, money: Int) {
+    private fun getResult(lotto: Lotto, match: LottoTicket, bonus: Int, money: Int) {
         getWinResult(lotto, match, bonus)
         val rate = getRateResult(money)
         output.printWinningResult(Rank.values(), rate)
     }
 
-    private fun getWinResult(lotto: Lotto, match: List<Int>, bonus: Int) {
-        for(lottoTicket in lotto.lottoTickets) {
-            val countOfMatch = lottoTicket.count { match.contains(it) }
-            val bonusMatch = lottoTicket.contains(bonus)
+    private fun getWinResult(lotto: Lotto, match: LottoTicket, bonus: Int) {
+        for(lottoTicket in lotto.lottoTicketList) {
+            val (countOfMatch, bonusMatch) = lotto.findMatch(lottoTicket, match, bonus)
             val rank = Rank.valueOf(countOfMatch, bonusMatch)
             Rank.saveRank(rank)
         }

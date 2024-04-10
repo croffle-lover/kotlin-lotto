@@ -68,14 +68,14 @@ class LottoTest {
     fun `발행한 로또들의 번호를 저장한다`() {
         //given
         val money = 2_000
+        val lotto = Lotto(money)
 
         //when
-        val lotto = Lotto(money)
 
         //then
         assertAll(
-            { assertThat(lotto.lottoTickets[0].size).isEqualTo(6) },
-            { assertThat(lotto.lottoTickets[1].size).isEqualTo(6) }
+            { assertThat(lotto.lottoTicketList[0].getNumbers().size).isEqualTo(6) },
+            { assertThat(lotto.lottoTicketList[1].getNumbers().size).isEqualTo(6) }
         )
     }
 

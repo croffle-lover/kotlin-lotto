@@ -1,5 +1,6 @@
 package lotto.view
 
+import lotto.model.LottoTicket
 import lotto.model.Rank
 
 private const val PURCHASED_LOTTO_THIS_MUCH = "개를 구매했습니다."
@@ -19,17 +20,18 @@ private const val RATE_OF_RETURN = "총 수익률은 "
 private const val IS_THIS = "입니다."
 
 class ResultView {
-    fun printLottoTickets(ticketNumber: Int, lottoTickets: MutableList<List<Int>>) {
+    fun printLottoTickets(ticketNumber: Int, lottoTickets: MutableList<LottoTicket>) {
         println("$ticketNumber" + PURCHASED_LOTTO_THIS_MUCH)
-        for (lotto in lottoTickets) {
+        for (lottoTicket in lottoTickets) {
+            val lotto = lottoTicket.getNumbers()
             val ticket = lotto.joinToString(", ", "[", "]")
             println(ticket)
         }
     }
 
-    fun printMatchNumber(matchNumber: List<Int>) {
+    fun printMatchNumber(matchNumber: LottoTicket) {
         println(LAST_MATCH_NUMBER_PLEASE)
-        val matchNumbers = matchNumber.joinToString(", ")
+        val matchNumbers = matchNumber.getNumbers().joinToString(", ")
         println(matchNumbers)
     }
 

@@ -15,10 +15,10 @@ class LottoTicketTest {
         val lottoTicket = lotto.makeLottoTicket()
 
         //when
-        lottoTicket.toSet()
+        lottoTicket.makeLottoTicket()
 
         //then
-        assertThat(lottoTicket.count()).isEqualTo(NUMBER_AMOUNT)
+        assertThat(lottoTicket.getNumbers().count()).isEqualTo(NUMBER_AMOUNT)
     }
 
     @Test
@@ -30,7 +30,7 @@ class LottoTicketTest {
         //when
 
         //then
-        assertThat(lottoTicket).allMatch{ it in NUMBER_RANGE }
+        assertThat(lottoTicket.getNumbers()).allMatch{ it in NUMBER_RANGE }
     }
 
     @Test
@@ -42,6 +42,6 @@ class LottoTicketTest {
         //when
 
         //then
-        assertThat(lottoTicket).isSorted()
+        assertThat(lottoTicket.getNumbers()).isSorted()
     }
 }
