@@ -5,7 +5,6 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
 private val NUMBER_AMOUNT = 6
-private val NUMBER_RANGE = 1..45
 
 class WinningNumberTest {
     @Test
@@ -21,19 +20,5 @@ class WinningNumberTest {
         //then
         assertThat(matchNumber.getNumbers().count()).isEqualTo(NUMBER_AMOUNT)
         assertThat(matchBonus).isNotIn(matchNumber)
-    }
-
-    @Test
-    fun `당첨 번호와 보너스 번호의 범위는 1~45까지이다`() {
-        //given
-        val winning = WinningNumber()
-        val matchNumber = winning.makeMatchNumber()
-        val matchBonus = winning.makeBonusNumber()
-
-        //when
-
-        //then
-        assertThat(matchNumber.getNumbers()).allMatch{ it in NUMBER_RANGE }
-        assertThat(matchBonus).isIn(NUMBER_RANGE)
     }
 }

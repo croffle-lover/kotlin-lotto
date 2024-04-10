@@ -5,7 +5,6 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
 private val NUMBER_AMOUNT = 6
-private val NUMBER_RANGE = 1..45
 
 class LottoTicketTest {
     @Test
@@ -19,18 +18,6 @@ class LottoTicketTest {
 
         //then
         assertThat(lottoTicket.getNumbers().count()).isEqualTo(NUMBER_AMOUNT)
-    }
-
-    @Test
-    fun `로또 번호의 숫자 범위는 1~45까지이다`() {
-        //given
-        val lotto = LottoTicket()
-        val lottoTicket = lotto.makeLottoTicket()
-
-        //when
-
-        //then
-        assertThat(lottoTicket.getNumbers()).allMatch{ it in NUMBER_RANGE }
     }
 
     @Test

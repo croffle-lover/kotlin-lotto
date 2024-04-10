@@ -1,7 +1,5 @@
 package lotto.model
 
-private val NUMBER_RANGE = 1..45
-
 class WinningNumber {
     fun makeMatchNumber(): LottoTicket {
         val matchNumber = LottoTicket().makeLottoTicket()
@@ -9,7 +7,7 @@ class WinningNumber {
     }
 
     fun makeBonusNumber(): Int {
-        val bonusNumber = NUMBER_RANGE.shuffled()[0]
+        val bonusNumber = LottoNumber().getANumber()
         return bonusNumber
     }
 }
