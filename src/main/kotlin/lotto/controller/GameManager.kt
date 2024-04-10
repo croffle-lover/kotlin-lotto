@@ -8,10 +8,11 @@ class GameManager {
     private val output = ResultView()
 
     fun startGame() {
+        val numberGenerator = MakeLottoNumber
         val money = InputView.getMoney()
         val lotto = getLotto(money)
-        val match = getMatchNumber()
-        val bonus = getBonusNumber()
+        val match = getMatchNumber(numberGenerator)
+        val bonus = getBonusNumber(numberGenerator)
         getResult(lotto, match, bonus, money)
     }
 
@@ -21,19 +22,19 @@ class GameManager {
         return lotto
     }
 
-    private fun getMatchNumber(): LottoTicket {
+    private fun getMatchNumber(numberGenerator: MakeLottoNumber): LottoTicket {
         val winning = WinningNumber()
 
-        val matchNumber = winning.makeMatchNumber()
+        val matchNumber = winning.makeMatchNumber(numberGenerator)
         output.printMatchNumber(matchNumber)
 
         return matchNumber
     }
 
-    private fun getBonusNumber(): Int {
+    private fun getBonusNumber(numberGenerator: MakeLottoNumber): Int {
         val winning = WinningNumber()
 
-        val bonusNumber = winning.makeBonusNumber()
+        val bonusNumber = winning.makeBonusNumber(numberGenerator)
         output.printBonusNumber(bonusNumber)
 
         return bonusNumber

@@ -1,13 +1,13 @@
 package lotto.model
 
 class WinningNumber {
-    fun makeMatchNumber(): LottoTicket {
-        val matchNumber = LottoTicket().makeLottoTicket()
+    fun makeMatchNumber(numberGenerator: NumberGenerator): LottoTicket {
+        val matchNumber = LottoTicket().makeLottoTicket(numberGenerator)
         return matchNumber
     }
 
-    fun makeBonusNumber(): Int {
-        val bonusNumber = LottoNumber().getANumber()
+    fun makeBonusNumber(numberGenerator: NumberGenerator): Int {
+        val bonusNumber = numberGenerator.generateRandomNumber()
         return bonusNumber
     }
 }

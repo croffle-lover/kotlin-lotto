@@ -5,12 +5,12 @@ private val NUMBER_AMOUNT = 6
 class LottoTicket() {
     private lateinit var lottoTicket: List<Int>
 
-    fun makeLottoTicket(): LottoTicket {
+    fun makeLottoTicket(numberGenerator: NumberGenerator): LottoTicket {
         val lottoTicketNumber = mutableListOf<Int>()
         repeat(NUMBER_AMOUNT) {
-            var number = LottoNumber().getANumber()
+            var number = numberGenerator.generateRandomNumber()
             while(number in lottoTicketNumber){
-                number = LottoNumber().getANumber()
+                number = numberGenerator.generateRandomNumber()
             }
             lottoTicketNumber.add(number)
         }

@@ -2,6 +2,7 @@ package lottoTest.modelTest
 
 import lotto.model.Lotto
 import lotto.model.LottoTicket
+import lotto.model.MakeLottoNumber
 import lotto.model.WinningNumber
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
@@ -65,12 +66,13 @@ class LottoTest {
     @Test
     fun `사용자가 구매한 로또 번호와 당첨 번호, 보너스 번호를 비교하여 당첨 여부를 확인한다`() {
         //given
+        val randomGenerator = MakeLottoNumber
         val lottoTicket = LottoTicket()
         val winning = WinningNumber()
         val lotto = Lotto(1_000)
-        val lottoTicketNumber = lottoTicket.makeLottoTicket()
-        val matchNumber = winning.makeMatchNumber()
-        val bonusNumber = winning.makeBonusNumber()
+        val lottoTicketNumber = lottoTicket.makeLottoTicket(randomGenerator)
+        val matchNumber = winning.makeMatchNumber(randomGenerator)
+        val bonusNumber = winning.makeBonusNumber(randomGenerator)
 
         //when
         val won = lotto.getRank(lottoTicketNumber, matchNumber, bonusNumber)
