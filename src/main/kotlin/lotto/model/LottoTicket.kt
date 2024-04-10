@@ -8,7 +8,10 @@ class LottoTicket() {
     fun makeLottoTicket(): LottoTicket {
         val lottoTicketNumber = mutableListOf<Int>()
         repeat(NUMBER_AMOUNT) {
-            val number = LottoNumber().getANumber()
+            var number = LottoNumber().getANumber()
+            while(number in lottoTicketNumber){
+                number = LottoNumber().getANumber()
+            }
             lottoTicketNumber.add(number)
         }
         lottoTicket = lottoTicketNumber.sorted()
