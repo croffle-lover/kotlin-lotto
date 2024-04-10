@@ -1,26 +1,30 @@
-package lotto.model
-
-enum class Rank(val countOfMatch: Int, val winningMoney: Int, val matchBonus:Boolean, var matchAmount: Int) {
-    FIRST(6, 2_000_000_000, false, 0),
-    SECOND(5, 30_000_000, true, 0),
-    THIRD(5, 1_500_000, false, 0),
-    FOURTH(4, 50_000, false, 0),
-    FIFTH(3, 5_000, false, 0),
-    MISS(0, 0, false, 0);
+enum class Rank(val countOfMatch: Int, val winningMoney: Int, val matchBonus:Boolean) {
+    FIRST(6, 2_000_000_000, false),
+    SECOND(5, 30_000_000, true),
+    THIRD(5, 1_500_000, false),
+    FOURTH(4, 50_000, false),
+    FIFTH(3, 5_000, false),
+    MISS(0, 0, false);
 
     companion object {
+        private val rankMap = mutableMapOf<Rank, Int>().withDefault { 0 }
+
         fun valueOf(countOfMatch: Int, matchBonus: Boolean): Rank {
             return values().find {
-                 it.countOfMatch == countOfMatch && it.matchBonus == matchBonus
-            }?: MISS
+                it.countOfMatch == countOfMatch && it.matchBonus == matchBonus
+            } ?: MISS
         }
 
         fun saveRank(rank: Rank) {
-            rank.matchAmount += 1
+            rankMap[rank] = rankMap.getValue(rank) + 1
         }
 
         fun getWinningMoney(): Int {
-            return values().sumOf { it.winningMoney * it.matchAmount }
+            return values().sumOf { it.winningMoney * rankMap.getValue(it) }
+        }
+
+        fun getRank(): MutableMap<Rank, Int> {
+            return rankMap
         }
     }
 }

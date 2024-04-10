@@ -1,7 +1,7 @@
 package lotto.view
 
+import Rank
 import lotto.model.LottoTicket
-import lotto.model.Rank
 
 private const val PURCHASED_LOTTO_THIS_MUCH = "개를 구매했습니다."
 private const val LAST_MATCH_NUMBER_PLEASE = "지난 주 당첨 번호를 입력해 주세요."
@@ -40,15 +40,15 @@ class ResultView {
         println(bonusNumber)
     }
 
-    fun printWinningResult(values: Array<Rank>, money: Double) {
+    fun printWinningResult(rank: MutableMap<Rank, Int>, money: Double) {
         println(WINNING_RESULT)
         println(DIVIDE_LINE)
 
-        println(THREE_MATCH+"${values[4].matchAmount}"+ MATCH_UNIT)
-        println(FOUR_MATCH+"${values[3].matchAmount}"+ MATCH_UNIT)
-        println(FIVE_MATCH+"${values[2].matchAmount}"+ MATCH_UNIT)
-        println(FIVE_AND_BONUS_MATCH+"${values[1].matchAmount}"+ MATCH_UNIT)
-        println(SIX_MATCH+"${values[0].matchAmount}"+ MATCH_UNIT)
+        println(THREE_MATCH + "${rank.getValue(Rank.FIFTH)}" + MATCH_UNIT)
+        println(FOUR_MATCH + "${rank.getValue(Rank.FOURTH)}" + MATCH_UNIT)
+        println(FIVE_MATCH + "${rank.getValue(Rank.THIRD)}" + MATCH_UNIT)
+        println(FIVE_AND_BONUS_MATCH + "${rank.getValue(Rank.SECOND)}" + MATCH_UNIT)
+        println(SIX_MATCH + "${rank.getValue(Rank.FIRST)}" + MATCH_UNIT)
 
         println(RATE_OF_RETURN+"$money"+ IS_THIS)
     }

@@ -42,7 +42,8 @@ class GameManager {
     private fun getResult(lotto: Lotto, match: LottoTicket, bonus: Int, money: Int) {
         getWinResult(lotto, match, bonus)
         val rate = getRateResult(money)
-        output.printWinningResult(Rank.values(), rate)
+        val rank = Rank.getRank()
+        output.printWinningResult(rank, rate)
     }
 
     private fun getWinResult(lotto: Lotto, match: LottoTicket, bonus: Int) {
