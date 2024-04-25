@@ -5,8 +5,6 @@ import lotto.view.InputView
 import lotto.view.ResultView
 
 class GameManager {
-    private val output = ResultView()
-
     fun startGame() {
         val numberGenerator = MakeLottoNumber
         val money = InputView.getMoney()
@@ -18,7 +16,7 @@ class GameManager {
 
     private fun getLotto(money: Int): Lotto {
         val lotto = Lotto(money)
-        output.printLottoTickets(lotto.ticketNumber, lotto.lottoTicketList)
+        ResultView.printLottoTickets(lotto.ticketNumber, lotto.lottoTicketList)
         return lotto
     }
 
@@ -26,7 +24,7 @@ class GameManager {
         val winning = WinningNumber()
 
         val matchNumber = winning.makeMatchNumber(numberGenerator)
-        output.printMatchNumber(matchNumber)
+        ResultView.printMatchNumber(matchNumber)
 
         return matchNumber
     }
@@ -35,7 +33,7 @@ class GameManager {
         val winning = WinningNumber()
 
         val bonusNumber = winning.makeBonusNumber(numberGenerator)
-        output.printBonusNumber(bonusNumber)
+        ResultView.printBonusNumber(bonusNumber)
 
         return bonusNumber
     }
@@ -44,7 +42,7 @@ class GameManager {
         getWinResult(lotto, match, bonus)
         val rate = getRateResult(money)
         val rank = Rank.getRank()
-        output.printWinningResult(rank, rate)
+        ResultView.printWinningResult(rank, rate)
     }
 
     private fun getWinResult(lotto: Lotto, match: LottoTicket, bonus: Int) {
