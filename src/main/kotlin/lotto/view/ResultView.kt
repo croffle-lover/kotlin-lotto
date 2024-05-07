@@ -1,6 +1,6 @@
 package lotto.view
 
-import Rank
+import lotto.model.Rank
 import lotto.model.LottoTicket
 
 private const val PURCHASED_LOTTO_THIS_MUCH = "개를 구매했습니다."

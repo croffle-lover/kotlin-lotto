@@ -16,15 +16,15 @@ class Lotto(money: Int) {
 
         ticketNumber = money / LOTTO_TICKET_PRICE
 
-        lottoTicketList = LottoList.setLottoTicketList(ticketNumber)
+        lottoTicketList = LottoBundle.setLottoTicketBundle(ticketNumber)
     }
 
     fun findMatch(lottoTicket: LottoTicket, match: LottoTicket, bonus: Int): Pair<Int, Boolean> {
         val ticket: List<Int> = lottoTicket.getNumbers()
         val countOfMatch = ticket.count{ match.getNumbers().contains(it) }
-        val matchBonus = ticket.contains( bonus )
+        val matchesBonus = ticket.contains( bonus )
 
-        return Pair(countOfMatch, matchBonus)
+        return Pair(countOfMatch, matchesBonus)
     }
 
     fun getRank(lottoTicketNumber: LottoTicket, matchNumber: LottoTicket, bonusNumber: Int): Any {

@@ -1,4 +1,6 @@
-enum class Rank(val countOfMatch: Int, val winningMoney: Int, val matchBonus:Boolean) {
+package lotto.model
+
+enum class Rank(val countOfMatch: Int, val winningMoney: Int, val matchesBonus:Boolean) {
     FIRST(6, 2_000_000_000, false),
     SECOND(5, 30_000_000, true),
     THIRD(5, 1_500_000, false),
@@ -9,9 +11,9 @@ enum class Rank(val countOfMatch: Int, val winningMoney: Int, val matchBonus:Boo
     companion object {
         private val rankMap = mutableMapOf<Rank, Int>().withDefault { 0 }
 
-        fun valueOf(countOfMatch: Int, matchBonus: Boolean): Rank {
+        fun valueOf(countOfMatch: Int, matchesBonus: Boolean): Rank {
             return values().find {
-                it.countOfMatch == countOfMatch && it.matchBonus == matchBonus
+                it.countOfMatch == countOfMatch && it.matchesBonus == matchesBonus
             } ?: MISS
         }
 

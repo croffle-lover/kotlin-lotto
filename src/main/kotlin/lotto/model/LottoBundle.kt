@@ -1,7 +1,7 @@
 package lotto.model
 
-object LottoList {
-    fun setLottoTicketList(ticketNumber: Int): List<LottoTicket> {
+object LottoBundle {
+    fun setLottoTicketBundle(ticketNumber: Int): List<LottoTicket> {
         val lottoTicketList: MutableList<LottoTicket> = mutableListOf()
         val numberGenerator = MakeLottoNumber
         repeat(ticketNumber) {
