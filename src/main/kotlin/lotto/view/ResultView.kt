@@ -20,7 +20,7 @@ private const val RATE_OF_RETURN = "총 수익률은 "
 private const val IS_THIS = "입니다."
 
 object ResultView {
-    fun printLottoTickets(ticketNumber: Int, lottoTickets: MutableList<LottoTicket>) {
+    fun printLottoTickets(ticketNumber: Int, lottoTickets: List<LottoTicket>) {
         println("$ticketNumber" + PURCHASED_LOTTO_THIS_MUCH)
         for (lottoTicket in lottoTickets) {
             val lotto = lottoTicket.getNumbers()

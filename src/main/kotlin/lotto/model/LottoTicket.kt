@@ -2,7 +2,7 @@ package lotto.model
 
 private val NUMBER_AMOUNT = 6
 
-class LottoTicket() {
+class LottoTicket {
     private lateinit var lottoTicket: List<Int>
 
     fun makeLottoTicket(numberGenerator: NumberGenerator): LottoTicket {
