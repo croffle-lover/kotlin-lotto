@@ -9,7 +9,7 @@ class LottoTicket {
         val lottoTicketNumber = mutableListOf<Int>()
         repeat(NUMBER_AMOUNT) {
             var number = numberGenerator.generateRandomNumber()
-            while(number in lottoTicketNumber){
+            while (number in lottoTicketNumber) {
                 number = numberGenerator.generateRandomNumber()
             }
             lottoTicketNumber.add(number)

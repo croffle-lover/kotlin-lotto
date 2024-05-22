@@ -6,8 +6,6 @@ class WinningNumber {
         return matchNumber
     }
 
-    fun makeBonusNumber(numberGenerator: NumberGenerator): Int {
-        val bonusNumber = numberGenerator.generateRandomNumber()
-        return bonusNumber
-    }
+    fun makeBonusNumber(numberGenerator: NumberGenerator): Int =
+        numberGenerator.generateRandomNumber()
 }

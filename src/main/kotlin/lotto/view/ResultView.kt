@@ -22,9 +22,9 @@ private const val IS_THIS = "입니다."
 object ResultView {
     fun printLottoTickets(ticketNumber: Int, lottoTickets: List<LottoTicket>) {
         println("$ticketNumber" + PURCHASED_LOTTO_THIS_MUCH)
-        for (lottoTicket in lottoTickets) {
+        lottoTickets.forEach { lottoTicket ->
             val lotto = lottoTicket.getNumbers()
-            val ticket = lotto.joinToString(", ", "[", "]")
+            val ticket = lotto.joinToString(separator = ", ", prefix = "[", postfix = "]")
             println(ticket)
         }
     }
@@ -50,6 +50,6 @@ object ResultView {
         println(FIVE_AND_BONUS_MATCH + "${rank.getValue(Rank.SECOND)}" + MATCH_UNIT)
         println(SIX_MATCH + "${rank.getValue(Rank.FIRST)}" + MATCH_UNIT)
 
-        println(RATE_OF_RETURN+"$money"+ IS_THIS)
+        println(RATE_OF_RETURN + "$money" + IS_THIS)
     }
 }

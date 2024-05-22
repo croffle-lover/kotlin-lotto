@@ -6,11 +6,10 @@ import lotto.view.ResultView
 
 class GameManager {
     fun startGame() {
-        val numberGenerator = MakeLottoNumber
         val money = InputView.getMoney()
         val lotto = getLotto(money)
-        val match = getMatchNumber(numberGenerator)
-        val bonus = getBonusNumber(numberGenerator)
+        val match = getMatchNumber(MakeLottoNumber)
+        val bonus = getBonusNumber(MakeLottoNumber)
         getResult(lotto, match, bonus, money)
     }
 
@@ -46,7 +45,7 @@ class GameManager {
     }
 
     private fun getWinResult(lotto: Lotto, match: LottoTicket, bonus: Int) {
-        for(lottoTicket in lotto.lottoTicketList) {
+        for (lottoTicket in lotto.lottoTicketList) {
             val (countOfMatch, bonusMatch) = lotto.findMatch(lottoTicket, match, bonus)
             val rank = Rank.valueOf(countOfMatch, bonusMatch)
             Rank.saveRank(rank)
@@ -55,8 +54,7 @@ class GameManager {
 
     private fun getRateResult(money: Int): Double {
         val winningMoney = Rank.getWinningMoney()
-        val rate = RateOfReturn()
-        val rateOfReturn = rate.getRateOfReturn(money, winningMoney)
+        val rateOfReturn = getRateOfReturn(money, winningMoney)
 
         return rateOfReturn
     }

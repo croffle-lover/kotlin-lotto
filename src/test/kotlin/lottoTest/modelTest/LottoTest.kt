@@ -1,9 +1,6 @@
 package lottoTest.modelTest
 
-import lotto.model.Lotto
-import lotto.model.LottoTicket
-import lotto.model.MakeLottoNumber
-import lotto.model.WinningNumber
+import lotto.model.*
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
@@ -36,7 +33,7 @@ class LottoTest {
         val error: IllegalArgumentException = assertThrows { Lotto(wrong_money) }
 
         //then
-        assertThat(error.message).isEqualTo("$wrong_money"+ IS_NOT_1_000_UNIT)
+        assertThat(error.message).isEqualTo("$wrong_money" + IS_NOT_1_000_UNIT)
     }
 
     @ValueSource(ints = [-14_000, -500])
@@ -48,7 +45,7 @@ class LottoTest {
         val error: IllegalArgumentException = assertThrows { Lotto(wrong_money) }
 
         //then
-        assertThat(error.message).isEqualTo("$wrong_money"+ IS_NOT_MONEY)
+        assertThat(error.message).isEqualTo("$wrong_money" + IS_NOT_MONEY)
     }
 
     @Test
