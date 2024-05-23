@@ -10,7 +10,7 @@ class GameManager {
         val lotto = getLotto(money)
         val match = getMatchNumber(MakeLottoNumber)
         val bonus = getBonusNumber(MakeLottoNumber)
-        getResult(lotto, match, bonus, money)
+        getResult(lotto, match, bonus, money, RankInfo())
     }
 
     private fun getLotto(money: Int): Lotto {
@@ -37,23 +37,23 @@ class GameManager {
         return bonusNumber
     }
 
-    private fun getResult(lotto: Lotto, match: LottoTicket, bonus: Int, money: Int) {
-        getWinResult(lotto, match, bonus)
-        val rate = getRateResult(money)
-        val rank = Rank.getRank()
+    private fun getResult(lotto: Lotto, match: LottoTicket, bonus: Int, money: Int, rankInfo: RankInfo) {
+        getWinResult(lotto, match, bonus, rankInfo)
+        val rate = getRateResult(money, rankInfo)
+        val rank = rankInfo.getRank()
         ResultView.printWinningResult(rank, rate)
     }
 
-    private fun getWinResult(lotto: Lotto, match: LottoTicket, bonus: Int) {
+    private fun getWinResult(lotto: Lotto, match: LottoTicket, bonus: Int, rankInfo: RankInfo) {
         for (lottoTicket in lotto.lottoTicketList) {
             val (countOfMatch, bonusMatch) = lotto.findMatch(lottoTicket, match, bonus)
             val rank = Rank.valueOf(countOfMatch, bonusMatch)
-            Rank.saveRank(rank)
+            rankInfo.saveRank(rank)
         }
     }
 
-    private fun getRateResult(money: Int): Double {
-        val winningMoney = Rank.getWinningMoney()
+    private fun getRateResult(money: Int, rankInfo: RankInfo): Double {
+        val winningMoney = rankInfo.getWinningMoney()
         val rateOfReturn = getRateOfReturn(money, winningMoney)
 
         return rateOfReturn

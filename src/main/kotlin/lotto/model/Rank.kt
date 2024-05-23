@@ -9,24 +9,26 @@ enum class Rank(val countOfMatch: Int, val winningMoney: Int, val matchesBonus: 
     MISS(0, 0, false);
 
     companion object {
-        private val rankMap = mutableMapOf<Rank, Int>().withDefault { 0 }
-
         fun valueOf(countOfMatch: Int, matchesBonus: Boolean): Rank {
             return values().find {
                 it.countOfMatch == countOfMatch && it.matchesBonus == matchesBonus
             } ?: MISS
         }
+    }
+}
 
-        fun saveRank(rank: Rank) {
-            rankMap[rank] = rankMap.getValue(rank) + 1
-        }
+class RankInfo {
+    private val rankMap = mutableMapOf<Rank, Int>().withDefault { 0 }
 
-        fun getWinningMoney(): Int {
-            return values().sumOf { it.winningMoney * rankMap.getValue(it) }
-        }
+    fun saveRank(rank: Rank) {
+        rankMap[rank] = rankMap.getValue(rank) + 1
+    }
 
-        fun getRank(): MutableMap<Rank, Int> {
-            return rankMap
-        }
+    fun getWinningMoney(): Int {
+        return Rank.values().sumOf { it.winningMoney * rankMap.getValue(it) }
+    }
+
+    fun getRank(): Map<Rank, Int> {
+        return rankMap
     }
 }

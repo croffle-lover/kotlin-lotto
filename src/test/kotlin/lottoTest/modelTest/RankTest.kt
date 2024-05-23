@@ -1,16 +1,13 @@
 package lottoTest.modelTest
 
 import lotto.model.Rank
+import lotto.model.RankInfo
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertAll
 
 class RankTest {
-    @BeforeEach
-    fun setup() {
-        Rank.getRank().clear()
-    }
+    private val rankInfo = RankInfo()
 
     @Test
     fun `일치하는 번호의 갯수에 따라 어느 유형으로 당첨됐거나 당첨되지 않았는지 알려준다`() {
@@ -38,11 +35,11 @@ class RankTest {
     @Test
     fun `당첨 유형마다 몇 개의 로또가 당첨됐는지 저장한다`() {
         //given
-        val rank = Rank.getRank()
+        val rank = rankInfo.getRank()
         val firstRank = Rank.FIRST
 
         //when
-        Rank.saveRank(firstRank)
+        rankInfo.saveRank(firstRank)
 
         //then
         assertThat(rank.getValue(Rank.FIRST)).isEqualTo(1)
@@ -53,10 +50,10 @@ class RankTest {
         //given
 
         //when
-        repeat(3) { Rank.saveRank(Rank.FIFTH) }
-        Rank.saveRank(Rank.SECOND)
+        repeat(3) { rankInfo.saveRank(Rank.FIFTH) }
+        rankInfo.saveRank(Rank.SECOND)
 
         //then
-        assertThat(Rank.getWinningMoney()).isEqualTo(30_015_000)
+        assertThat(rankInfo.getWinningMoney()).isEqualTo(30_015_000)
     }
 }

@@ -40,7 +40,7 @@ object ResultView {
         println(bonusNumber)
     }
 
-    fun printWinningResult(rank: MutableMap<Rank, Int>, money: Double) {
+    fun printWinningResult(rank: Map<Rank, Int>, money: Double) {
         println(WINNING_RESULT)
         println(DIVIDE_LINE)
 
