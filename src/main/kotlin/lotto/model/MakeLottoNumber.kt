@@ -1,10 +1,8 @@
 package lotto.model
 
-private val NUMBER_RANGE = 1..45
+import lotto.model.RandomNumberGenerator.*
 
-fun interface NumberGenerator {
-    fun generateRandomNumber(): Int
-}
+private val NUMBER_RANGE = 1..45
 
 object MakeLottoNumber : NumberGenerator {
     override fun generateRandomNumber(): Int {

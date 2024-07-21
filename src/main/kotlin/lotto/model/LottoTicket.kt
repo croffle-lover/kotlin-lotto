@@ -1,5 +1,7 @@
 package lotto.model
 
+import lotto.model.RandomNumberGenerator.*
+
 private val NUMBER_AMOUNT = 6
 
 class LottoTicket(numberGenerator: NumberGenerator) {
