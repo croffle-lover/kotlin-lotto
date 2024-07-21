@@ -5,7 +5,7 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertAll
 
-class LottoListTest {
+class LottoBundleTest {
 
     @Test
     fun `구입한 로또들의 번호들을 가진다`() {
@@ -17,8 +17,8 @@ class LottoListTest {
 
         //then
         assertAll(
-            { assertThat(lotto.lottoTicketList[0].getNumbers().size).isEqualTo(6) },
-            { assertThat(lotto.lottoTicketList[1].getNumbers().size).isEqualTo(6) }
+            { assertThat(lotto.lottoTicketBundle[0].getNumbers().size).isEqualTo(6) },
+            { assertThat(lotto.lottoTicketBundle[1].getNumbers().size).isEqualTo(6) }
         )
     }
 }

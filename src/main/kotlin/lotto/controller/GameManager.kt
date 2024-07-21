@@ -15,7 +15,7 @@ class GameManager {
 
     private fun getLotto(money: Int): Lotto {
         val lotto = Lotto(money)
-        ResultView.printLottoTickets(lotto.ticketNumber, lotto.lottoTicketList)
+        ResultView.printLottoTickets(lotto.ticketNumber, lotto.lottoTicketBundle)
         return lotto
     }
 
@@ -45,7 +45,7 @@ class GameManager {
     }
 
     private fun getWinResult(lotto: Lotto, match: LottoTicket, bonus: Int, rankInfo: RankInfo) {
-        for (lottoTicket in lotto.lottoTicketList) {
+        for (lottoTicket in lotto.lottoTicketBundle) {
             val (countOfMatch, bonusMatch) = lotto.findMatch(lottoTicket, match, bonus)
             val rank = Rank.valueOf(countOfMatch, bonusMatch)
             rankInfo.saveRank(rank)
