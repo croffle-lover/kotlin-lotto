@@ -1,7 +1,6 @@
 package lotto.view
 
-import lotto.model.Rank
-import lotto.model.LottoTicket
+import lotto.model.*
 
 private const val PURCHASED_LOTTO_THIS_MUCH = "개를 구매했습니다."
 private const val LAST_MATCH_NUMBER_PLEASE = "지난 주 당첨 번호를 입력해 주세요."
@@ -18,6 +17,10 @@ private const val MATCH_UNIT = "개"
 
 private const val RATE_OF_RETURN = "총 수익률은 "
 private const val IS_THIS = "입니다."
+
+private const val SHOULD_PURCHASE_AT_LEAST_ONE_TICKET = "로또는 한 장 이상 구매해야 합니다."
+private const val IS_NOT_MONEY = "은 양의 정수가 아닙니다."
+private const val IS_NOT_1_000_UNIT = "원은 1,000원 단위가 아닙니다."
 
 object ResultView {
     fun printLottoTickets(ticketNumber: Int, lottoTickets: List<LottoTicket>) {
@@ -51,5 +54,13 @@ object ResultView {
         println(SIX_MATCH + "${rank.getValue(Rank.FIRST)}" + MATCH_UNIT)
 
         println(RATE_OF_RETURN + "$money" + IS_THIS)
+    }
+
+    fun printMoneyError(money: Int, msg: String) {
+        when (msg) {
+            "it's 0" -> println(SHOULD_PURCHASE_AT_LEAST_ONE_TICKET)
+            "under 0" -> println("$money" + IS_NOT_MONEY)
+            "not in thousand won units" -> println("$money" + IS_NOT_1_000_UNIT)
+        }
     }
 }
