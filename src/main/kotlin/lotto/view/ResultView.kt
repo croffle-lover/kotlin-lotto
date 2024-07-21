@@ -43,16 +43,18 @@ object ResultView {
     }
 
     fun printWinningResult(rank: Map<Rank, Int>, money: Double) {
-        println(WINNING_RESULT)
-        println(DIVIDE_LINE)
+        val result = StringBuilder()
 
-        println(THREE_MATCH + "${rank.getValue(Rank.FIFTH)}" + MATCH_UNIT)
-        println(FOUR_MATCH + "${rank.getValue(Rank.FOURTH)}" + MATCH_UNIT)
-        println(FIVE_MATCH + "${rank.getValue(Rank.THIRD)}" + MATCH_UNIT)
-        println(FIVE_AND_BONUS_MATCH + "${rank.getValue(Rank.SECOND)}" + MATCH_UNIT)
-        println(SIX_MATCH + "${rank.getValue(Rank.FIRST)}" + MATCH_UNIT)
+        result.appendLine(WINNING_RESULT)
+            .appendLine(DIVIDE_LINE)
+            .appendLine("$THREE_MATCH${rank.getValue(Rank.FIFTH)}$MATCH_UNIT")
+            .appendLine("$FOUR_MATCH${rank.getValue(Rank.FOURTH)}$MATCH_UNIT")
+            .appendLine("$FIVE_MATCH${rank.getValue(Rank.THIRD)}$MATCH_UNIT")
+            .appendLine("$FIVE_AND_BONUS_MATCH${rank.getValue(Rank.SECOND)}$MATCH_UNIT")
+            .appendLine("$SIX_MATCH${rank.getValue(Rank.FIRST)}$MATCH_UNIT")
+            .appendLine("$RATE_OF_RETURN$money$IS_THIS")
 
-        println(RATE_OF_RETURN + "$money" + IS_THIS)
+        println(result.toString())
     }
 
     fun printMoneyError(money: Int, msg: String) {
