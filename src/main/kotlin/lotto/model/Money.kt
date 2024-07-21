@@ -5,7 +5,7 @@ import lotto.view.ResultView
 
 private const val LOTTO_TICKET_PRICE = 1_000
 
-class Money {
+object Money {
     fun isAccurateMoney(money: Int): Int {
         if(money == 0) {
             ResultView.printMoneyError(money, "it's 0")
@@ -21,5 +21,11 @@ class Money {
         }
 
         return money
+    }
+
+    fun getRateOfReturn(money: Int, winningMoney: Int): Double {
+        val rate = winningMoney.toDouble() / money.toDouble()
+        val rateOfReturn = ((rate + 0.005) * 100).toInt() / 100.0
+        return rateOfReturn
     }
 }

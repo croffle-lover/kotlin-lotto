@@ -54,7 +54,7 @@ class GameManager {
 
     private fun getRateResult(money: Int, rankInfo: RankInfo): Double {
         val winningMoney = rankInfo.getWinningMoney()
-        val rateOfReturn = getRateOfReturn(money, winningMoney)
+        val rateOfReturn = Money.getRateOfReturn(money, winningMoney)
 
         return rateOfReturn
     }

@@ -3,7 +3,7 @@ package lotto.model
 private const val LOTTO_TICKET_PRICE = 1_000
 
 class Lotto(money: Int) {
-    val ticketNumber: Int = Money().isAccurateMoney(money) / LOTTO_TICKET_PRICE
+    val ticketNumber: Int = Money.isAccurateMoney(money) / LOTTO_TICKET_PRICE
     val lottoTicketBundle: List<LottoTicket> = LottoBundle.setLottoTicketBundle(ticketNumber)
 
     fun findMatch(lottoTicket: LottoTicket, match: LottoTicket, bonus: Int): Pair<Int, Boolean> {

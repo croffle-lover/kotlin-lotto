@@ -1,8 +1,8 @@
 package lottoTest.modelTest
 
+import lotto.model.Money
 import lotto.model.Rank
 import lotto.model.RankInfo
-import lotto.model.getRateOfReturn
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.params.ParameterizedTest
@@ -24,7 +24,7 @@ class RateOfReturnTest {
         val winningMoney = rankInfo.getWinningMoney()
 
         //when
-        val rateOfReturn = getRateOfReturn(money, winningMoney)
+        val rateOfReturn = Money.getRateOfReturn(money, winningMoney)
 
         //then
         assertThat(rateOfReturn).isEqualTo(expectedRateOfReturn)
