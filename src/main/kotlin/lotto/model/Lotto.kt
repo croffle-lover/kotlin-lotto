@@ -14,8 +14,8 @@ class Lotto(money: Int) {
         return Pair(countOfMatch, matchesBonus)
     }
 
-    fun getRank(lottoTicketNumber: LottoTicket, matchNumber: LottoTicket, bonusNumber: Int): Any {
-        val (countOfMatch, matchBonus) = findMatch(lottoTicketNumber, matchNumber, bonusNumber)
+    fun getRank(lottoTicketNumbers: LottoTicket, matchNumber: LottoTicket, bonusNumber: Int): Any {
+        val (countOfMatch, matchBonus) = findMatch(lottoTicketNumbers, matchNumber, bonusNumber)
 
         return Rank.valueOf(countOfMatch, matchBonus)
     }

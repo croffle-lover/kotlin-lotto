@@ -24,12 +24,12 @@ class LottoTest {
         val lottoTicket = LottoTicket()
         val winning = WinningNumber()
         val lotto = Lotto(1_000)
-        val lottoTicketNumber = lottoTicket.makeLottoTicket(randomGenerator)
+        val lottoTicketNumbers = lottoTicket.makeLottoTicket(randomGenerator)
         val matchNumber = winning.makeMatchNumber(randomGenerator)
         val bonusNumber = winning.makeBonusNumber(randomGenerator)
 
         //when
-        val won = lotto.getRank(lottoTicketNumber, matchNumber, bonusNumber)
+        val won = lotto.getRank(lottoTicketNumbers, matchNumber, bonusNumber)
 
         //then
         val rankValues = Rank.values()

@@ -6,15 +6,15 @@ class LottoTicket {
     private lateinit var lottoTicket: List<Int>
 
     fun makeLottoTicket(numberGenerator: NumberGenerator): LottoTicket {
-        val lottoTicketNumber = mutableListOf<Int>()
+        val lottoTicketNumbers = mutableListOf<Int>()
         repeat(NUMBER_AMOUNT) {
             var number = numberGenerator.generateRandomNumber()
-            while (number in lottoTicketNumber) {
+            while (number in lottoTicketNumbers) {
                 number = numberGenerator.generateRandomNumber()
             }
-            lottoTicketNumber.add(number)
+            lottoTicketNumbers.add(number)
         }
-        lottoTicket = lottoTicketNumber.sorted()
+        lottoTicket = lottoTicketNumbers.sorted()
 
         return this
     }
