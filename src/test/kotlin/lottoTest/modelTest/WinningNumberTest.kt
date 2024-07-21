@@ -17,10 +17,9 @@ class WinningNumberTest {
         val matchBonus = winning.makeBonusNumber(randomGenerator)
 
         //when
-        matchNumber.makeLottoTicket(randomGenerator)
 
         //then
-        assertThat(matchNumber.getNumbers().distinct().count()).isEqualTo(NUMBER_AMOUNT)
+        assertThat(matchNumber.lottoTicket.distinct().count()).isEqualTo(NUMBER_AMOUNT)
         assertThat(matchBonus).isNotIn(matchNumber)
     }
 }

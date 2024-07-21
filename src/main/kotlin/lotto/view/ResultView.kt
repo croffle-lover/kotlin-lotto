@@ -26,15 +26,14 @@ object ResultView {
     fun printLottoTickets(ticketNumber: Int, lottoTickets: List<LottoTicket>) {
         println("$ticketNumber" + PURCHASED_LOTTO_THIS_MUCH)
         lottoTickets.forEach { lottoTicket ->
-            val lotto = lottoTicket.getNumbers()
-            val ticket = lotto.joinToString(separator = ", ", prefix = "[", postfix = "]")
+            val ticket = lottoTicket.lottoTicket.joinToString(separator = ", ", prefix = "[", postfix = "]")
             println(ticket)
         }
     }
 
     fun printMatchNumber(matchNumber: LottoTicket) {
         println(LAST_MATCH_NUMBER_PLEASE)
-        val matchNumbers = matchNumber.getNumbers().joinToString(", ")
+        val matchNumbers = matchNumber.lottoTicket.joinToString(", ")
         println(matchNumbers)
     }
 

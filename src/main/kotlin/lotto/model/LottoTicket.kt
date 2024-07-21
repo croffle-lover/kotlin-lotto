@@ -2,10 +2,10 @@ package lotto.model
 
 private val NUMBER_AMOUNT = 6
 
-class LottoTicket {
-    private lateinit var lottoTicket: List<Int>
+class LottoTicket(numberGenerator: NumberGenerator) {
+    private val _lottoTicket: List<Int>
 
-    fun makeLottoTicket(numberGenerator: NumberGenerator): LottoTicket {
+    init {
         val lottoTicketNumbers = mutableListOf<Int>()
         repeat(NUMBER_AMOUNT) {
             var number = numberGenerator.generateRandomNumber()
@@ -14,12 +14,9 @@ class LottoTicket {
             }
             lottoTicketNumbers.add(number)
         }
-        lottoTicket = lottoTicketNumbers.sorted()
-
-        return this
+        _lottoTicket = lottoTicketNumbers.sorted()
     }
 
-    fun getNumbers(): List<Int> {
-        return lottoTicket
-    }
+    val lottoTicket: List<Int>
+        get() = _lottoTicket
 }

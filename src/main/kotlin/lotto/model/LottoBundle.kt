@@ -5,7 +5,7 @@ object LottoBundle {
         val lottoTicketBundle: MutableList<LottoTicket> = mutableListOf()
         val numberGenerator = MakeLottoNumber
         repeat(ticketNumber) {
-            val ticket = LottoTicket().makeLottoTicket(numberGenerator)
+            val ticket = LottoTicket(numberGenerator)
             lottoTicketBundle.add(ticket)
         }
         return lottoTicketBundle

@@ -17,8 +17,8 @@ class LottoBundleTest {
 
         //then
         assertAll(
-            { assertThat(lotto.lottoTicketBundle[0].getNumbers().size).isEqualTo(6) },
-            { assertThat(lotto.lottoTicketBundle[1].getNumbers().size).isEqualTo(6) }
+            { assertThat(lotto.lottoTicketBundle[0].lottoTicket.size).isEqualTo(6) },
+            { assertThat(lotto.lottoTicketBundle[1].lottoTicket.size).isEqualTo(6) }
         )
     }
 }

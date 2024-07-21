@@ -7,8 +7,8 @@ class Lotto(money: Int) {
     val lottoTicketBundle: List<LottoTicket> = LottoBundle.setLottoTicketBundle(ticketNumber)
 
     fun findMatch(lottoTicket: LottoTicket, match: LottoTicket, bonus: Int): Pair<Int, Boolean> {
-        val ticket: List<Int> = lottoTicket.getNumbers()
-        val countOfMatch = ticket.count { match.getNumbers().contains(it) }
+        val ticket: List<Int> = lottoTicket.lottoTicket
+        val countOfMatch = ticket.count { match.lottoTicket.contains(it) }
         val matchesBonus = ticket.contains(bonus)
 
         return Pair(countOfMatch, matchesBonus)
